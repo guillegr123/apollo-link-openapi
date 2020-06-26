@@ -1,0 +1,56 @@
+{
+  "name": "apollo-link-openapi",
+  "version": "0.1.0",
+  "description": "An Apollo Link for REST endpoints described by an OpenAPI specification.",
+  "contributors": [
+    "Guillermo Gutierrez"
+  ],
+  "engines": {
+    "node": ">=8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/guillegr123/apollo-link-openapi"
+  },
+  "homepage": "https://github.com/guillegr123/apollo-link-openapi",
+  "keywords": [
+    "oas",
+    "openapi specification",
+    "graphql",
+    "wrap",
+    "rest",
+    "restful",
+    "api"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "debug": "^4.1.0",
+    "deep-equal": "^2.0.1",
+    "form-urlencoded": "^4.1.1",
+    "graphql-subscriptions": "^1.1.0",
+    "graphql-type-json": "^0.2.1",
+    "json-ptr": "^1.2.0",
+    "jsonpath-plus": "^3.0.0",
+    "pluralize": "^8.0.0",
+    "request": "^2.88.0",
+    "swagger2openapi": "^5.1.0"
+  },
+  "peerDependencies": {
+    "graphql": "^0.9.6 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0"
+  },
+  "devDependencies": {
+    "@types/graphql": "^14.0.3",
+    "@types/jest": "^26.0.3",
+    "@types/node": "^13.5.0",
+    "@types/request": "^2.48.1",
+    "tslint": "^5.0.0",
+    "tslint-config-standard": "^9.0.0",
+    "typescript": "^3.5.3"
+  }
+}
