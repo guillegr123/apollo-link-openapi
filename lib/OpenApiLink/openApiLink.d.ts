@@ -14,4 +14,3 @@ export declare class OpenApiLink<TSource, TContext, TArgs> extends ApolloLink {
     constructor({ schema, options }: OpenApiLink.Options<TSource, TContext, TArgs>);
     request(operation: Operation): Observable<FetchResult> | null;
 }
-export default SwaggerSchemaLink;
