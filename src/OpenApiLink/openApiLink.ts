@@ -50,5 +50,3 @@ export class OpenApiLink<TSource, TContext, TArgs> extends ApolloLink {
     });
   }
 }
-
-export default SwaggerSchemaLink;
