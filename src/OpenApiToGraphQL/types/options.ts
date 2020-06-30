@@ -64,7 +64,9 @@ export type RequestOptions<TSource, TContext, TArgs> = Omit<
   NodeRequest.OptionsWithUrl,
   'headers'
 > & {
-  headers?: Headers | RequestHeadersFunction<TSource, TContext, TArgs>
+  headers?: Headers | RequestHeadersFunction<TSource, TContext, TArgs>,
+  mapRequest?: Function,
+  mapResponse?: Function
 }
       
 export type Options<TSource, TContext, TArgs> = Partial<InternalOptions<TSource, TContext, TArgs>>

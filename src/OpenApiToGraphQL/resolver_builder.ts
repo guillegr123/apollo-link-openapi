@@ -526,17 +526,22 @@ export function getResolver<TSource, TContext, TArgs>({
         ? 'requestBody'
         : Oas3Tools.sanitize(payloadName, Oas3Tools.CaseStyle.camelCase)
 
+      let desanitizedPayload
+        = ([ 'application/json', 'application/x-www-form-urlencoded' ].includes(operation.payloadContentType))
+          ? Oas3Tools.desanitizeObjectKeys(args[sanePayloadName], data.saneMap)
+          : args[sanePayloadName]
+
+      if (requestOptions.mapRequest) {
+        desanitizedPayload = requestOptions.mapRequest(desanitizedPayload);
+      }
+
       let rawPayload
       if (operation.payloadContentType === 'application/json') {
-        rawPayload = JSON.stringify(
-          Oas3Tools.desanitizeObjectKeys(args[sanePayloadName], data.saneMap)
-        )
+        rawPayload = JSON.stringify(desanitizedPayload)
       } else if (
         operation.payloadContentType === 'application/x-www-form-urlencoded'
       ) {
-        rawPayload = formurlencoded(
-          Oas3Tools.desanitizeObjectKeys(args[sanePayloadName], data.saneMap)
-        )
+        rawPayload = formurlencoded(desanitizedPayload)
       } else {
         // Payload is not an object
         rawPayload = args[sanePayloadName]
@@ -702,6 +707,10 @@ export function getResolver<TSource, TContext, TArgs>({
                 }
 
                 resolveData.responseHeaders = response.headers
+
+                if (requestOptions.mapResponse) {
+                  responseBody = requestOptions.mapResponse(responseBody)
+                }
 
                 // Deal with the fact that the server might send unsanitized data
                 let saneData = Oas3Tools.sanitizeObjectKeys(
