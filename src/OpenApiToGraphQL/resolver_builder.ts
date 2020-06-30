@@ -531,7 +531,7 @@ export function getResolver<TSource, TContext, TArgs>({
           ? Oas3Tools.desanitizeObjectKeys(args[sanePayloadName], data.saneMap)
           : args[sanePayloadName]
 
-      if (requestOptions.mapRequest) {
+      if (requestOptions && requestOptions.mapRequest) {
         desanitizedPayload = requestOptions.mapRequest(desanitizedPayload);
       }
 
@@ -708,7 +708,7 @@ export function getResolver<TSource, TContext, TArgs>({
 
                 resolveData.responseHeaders = response.headers
 
-                if (requestOptions.mapResponse) {
+                if (requestOptions && requestOptions.mapResponse) {
                   responseBody = requestOptions.mapResponse(responseBody)
                 }
 
